@@ -384,6 +384,8 @@ SHELL
       gem_path = "#{gem_layer_path}/#{slug_vendor_base}"
       ENV["GEM_PATH"] = gem_path
       ENV["GEM_HOME"] = gem_path
+      puts "default_path(gem_layer_path): #{default_path(gem_layer_path)}"
+
       ENV["PATH"]     = default_path(gem_layer_path)
     end
   end
@@ -432,6 +434,8 @@ SHELL
       set_env_default  "LANG",     "en_US.UTF-8"
       set_env_override "GEM_PATH", "#{gem_layer_path}/#{slug_vendor_base}:$GEM_PATH"
       set_env_override "PATH",      profiled_path.join(":")
+
+      puts "profiled_path: #{profiled_path.join(":")}"
 
       set_env_default "MALLOC_ARENA_MAX", "2"     if default_malloc_arena_max?
       add_to_profiled set_default_web_concurrency if env("SENSIBLE_DEFAULTS")
