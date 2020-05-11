@@ -395,7 +395,13 @@ SHELL
         paths = ENV["PATH"]
       else
         paths = ENV["PATH"].split(":").map do |path|
-          /^\/.*/ !~ path ? "#{build_path}/#{path}" : path
+          # if path does not start with / or $ prepend build_path
+          if !path.match?(/^(\/|\$).*/)
+            path = "#{build_path}/#{path}"
+          end
+
+          path.gsub!("$HOME", build_path)
+          path
         end.join(":")
       end
 
