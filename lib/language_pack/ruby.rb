@@ -330,6 +330,8 @@ EOF
 
   # sets up the environment variables for the build process
   def setup_language_pack_environment(ruby_layer_path:, gem_layer_path:)
+    puts ENV["PATH"].inspect
+
     instrument 'ruby.setup_language_pack_environment' do
       if ruby_version.jruby?
         ENV["PATH"] += ":bin"
@@ -351,6 +353,7 @@ SHELL
       # This passes an argument to all Node processes during the build, so that they
       # can take advantage of all available memory on the build dynos.
       ENV["NODE_OPTIONS"] ||= "--max_old_space_size=2560"
+
 
       # TODO when buildpack-env-args rolls out, we can get rid of
       # ||= and the manual setting below
