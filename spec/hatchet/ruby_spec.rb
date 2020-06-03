@@ -46,7 +46,7 @@ describe "Ruby apps" do
     it "works" do
       buildpacks = [
         :default,
-        "https://github.com/sharpstone/force_absolute_paths_buildpack"
+        "https://github.com/sharpstone/force_absolute_paths_buildpack#schneems/check-dirs-exist"
       ]
       Hatchet::Runner.new('cd_ruby', stack: DEFAULT_STACK, buildpacks: buildpacks).deploy do |app|
         expect(app.output).to match("cd version ruby 2.5.1")
