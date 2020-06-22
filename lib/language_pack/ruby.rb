@@ -828,7 +828,7 @@ BUNDLE
       log("bundle") do
         bundle_without = env("BUNDLE_WITHOUT") || default_bundle_without
         bundle_bin     = "bundle"
-        bundle_command = "#{bundle_bin} install --without #{bundle_without} --path #{bundle_path} --binstubs #{bundler_binstubs_path}"
+        bundle_command = "#{bundle_bin} install --without #{bundle_without} --path #{bundle_path} --binstubs #{bundler_binstubs_path} --shebang ruby"
         bundle_command << " -j4"
 
         if File.exist?("#{Dir.pwd}/.bundle/config")
