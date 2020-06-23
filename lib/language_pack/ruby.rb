@@ -101,7 +101,11 @@ WARNING
       warn_bundler_upgrade
       install_ruby(slug_vendor_ruby, build_ruby_path) # <===============
       puts "===================+"
-      puts `sed -i '1s/^/#! \/usr\/bin\/env ruby/' bin/rake`
+      File.open("bin/rake", 'w') do |file|
+        contents = File.read("bin/rake")
+        file.puts '#! /usr/bin/env ruby'
+        file.puts contents
+      end
       install_jvm
 
       setup_language_pack_environment(ruby_layer_path: File.expand_path("."), gem_layer_path: File.expand_path("."))
