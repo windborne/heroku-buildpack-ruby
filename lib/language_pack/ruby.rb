@@ -95,12 +95,14 @@ WARNING
       new_app?
       Dir.chdir(build_path)
 
+      FileUtils.symlink(build_path, "/app", force: true)
+
 
       remove_vendor_bundle
       warn_bundler_upgrade
       install_ruby(slug_vendor_ruby, build_ruby_path) # <===============
-      puts "DEBUG 00000"
-      puts `ls bin`
+      puts "========= ls bin"
+      puts `ls /app/vendor/ruby-2.3.8/bin`
       install_jvm
       setup_language_pack_environment(ruby_layer_path: File.expand_path("."), gem_layer_path: File.expand_path("."))
       setup_profiled(ruby_layer_path: "$HOME", gem_layer_path: "$HOME") # $HOME is set to /app at run time
