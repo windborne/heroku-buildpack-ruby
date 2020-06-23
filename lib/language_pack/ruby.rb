@@ -95,7 +95,7 @@ WARNING
       new_app?
       Dir.chdir(build_path)
 
-      FileUtils.symlink(build_path, "/app", force: true)
+      # FileUtils.symlink(build_path, "/app", force: true)
 
 
       remove_vendor_bundle
