@@ -96,21 +96,14 @@ WARNING
       Dir.chdir(build_path)
 
       # FileUtils.symlink(build_path, "/app", force: true)
-      `rm -rf /app`
-      `ln -nfs #{build_path} /app`
-      puts $?.inspect
-
 
       remove_vendor_bundle
       warn_bundler_upgrade
       install_ruby(slug_vendor_ruby, build_ruby_path) # <===============
-      puts "========= ls -la /"
-      puts `ls -la /`
-      puts "========= ls /app/vendor"
-      puts `ls /app/vendor`
-      puts "========= ls /app/vendor/ruby-2.3.8/bin"
-      puts `ls /app/vendor/ruby-2.3.8/bin`
+      puts "===================+"
+      puts `sed -i '1s/^/#! /usr/bin/env ruby/' bin/rake`
       install_jvm
+
       setup_language_pack_environment(ruby_layer_path: File.expand_path("."), gem_layer_path: File.expand_path("."))
       setup_profiled(ruby_layer_path: "$HOME", gem_layer_path: "$HOME") # $HOME is set to /app at run time
       allow_git do
