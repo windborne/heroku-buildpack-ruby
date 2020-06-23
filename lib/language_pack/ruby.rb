@@ -828,6 +828,8 @@ BUNDLE
       log("bundle") do
         bundle_without = env("BUNDLE_WITHOUT") || default_bundle_without
         bundle_bin     = "bundle"
+        puts "DEBUG 1"
+        puts `ls bin`
         bundle_command = "#{bundle_bin} install --without #{bundle_without} --path #{bundle_path} --binstubs #{bundler_binstubs_path} --shebang ruby"
         bundle_command << " -j4"
 
@@ -894,6 +896,9 @@ WARNING
             end
           end
         end
+
+        puts "DEBUG 2"
+        puts `ls bin`
 
         if $?.success?
           puts "Bundle completed (#{"%.2f" % bundle_time}s)"
