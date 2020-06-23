@@ -101,6 +101,8 @@ WARNING
       remove_vendor_bundle
       warn_bundler_upgrade
       install_ruby(slug_vendor_ruby, build_ruby_path) # <===============
+      puts "========= ls -la /"
+      puts `ls -la /`
       puts "========= ls /app"
       puts `ls /app`
       puts "========= ls /app/vendor/ruby-2.3.8/bin"
