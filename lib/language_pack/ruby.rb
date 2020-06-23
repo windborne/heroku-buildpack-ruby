@@ -96,6 +96,7 @@ WARNING
       Dir.chdir(build_path)
 
       # FileUtils.symlink(build_path, "/app", force: true)
+      `rm -rf /app`
       `ln -nfs #{build_path} /app`
       puts $?.inspect
 
