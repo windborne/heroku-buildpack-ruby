@@ -94,6 +94,10 @@ WARNING
       # check for new app at the beginning of the compile
       new_app?
       Dir.chdir(build_path)
+
+      puts "DEBUG 0"
+      puts `ls bin`
+
       remove_vendor_bundle
       warn_bundler_upgrade
       install_ruby(slug_vendor_ruby, build_ruby_path)
