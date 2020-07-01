@@ -44,9 +44,9 @@ class LanguagePack::Helpers::RakeRunner
       options      = @default_options.merge(options)
       quiet_option = options.delete(:quiet)
 
-      puts "Running: rake #{task}" unless quiet_option
+      puts "Running: rake #{task}"
       time = Benchmark.realtime do
-        cmd = "rake #{task}"
+        puts "which rake: #{`which rake`}"
 
         if quiet_option
           self.output = run("rake #{task}", options)
@@ -97,6 +97,9 @@ class LanguagePack::Helpers::RakeRunner
     return if !has_rake_installed?
 
     out = load_rake_tasks(options)
+
+    puts "Debug output: "
+    puts out
 
     if cannot_load_rakefile?
       msg =  "Could not detect rake tasks\n"
