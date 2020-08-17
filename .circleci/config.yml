@@ -7,7 +7,7 @@ jobs:
     machine: true
     steps:
       - buildpacks/install-pack:
-          version: "0.11.0"
+          version: "0.12.0"
       - checkout
       - run:
           command: |
@@ -20,7 +20,7 @@ jobs:
             bundle install
             bundle exec rake hatchet:setup_ci
             echo "pack version: $(pack --version)"
-            rspec spec/cnb/
+            rspec spec/circleci/
 
 workflows:
   main:
