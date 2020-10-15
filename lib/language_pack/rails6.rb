@@ -17,6 +17,11 @@ class LanguagePack::Rails6 < LanguagePack::Rails5
   def compile
     instrument "rails6.compile" do
       FileUtils.mkdir_p("tmp/pids")
+
+      puts `echo "//npm.pkg.github.com/:_authToken=#{ENV['NPM_PRIVATE_TOKEN']}" > ~/.npmrc`
+      puts `echo "//registry.npmjs.org/:_authToken=#{ENV['NPM_PUBLIC_TOKEN']}" >> ~/.npmrc`
+      puts `npm install`
+
       super
     end
   end

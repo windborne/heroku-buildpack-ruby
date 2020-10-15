@@ -75,7 +75,7 @@ WARNING
           return true
         end
 
-        precompile = rake.task("assets:precompile")
+        precompile = rake.task("webpacker:compile")
         return true if precompile.not_defined?
 
         topic("Preparing app for Rails asset pipeline")
